@@ -40,8 +40,14 @@ namespace RAMSerices.Controllers
         }
 
         // POST /systeme
-        [HttpPost]
-        public void AjoutSysteme(Systeme nSys)
+        [HttpPost("cao")]
+        public IEnumerable<Systeme>  ModifSysteme(int id, string cao)
+        {
+            return referentiel.ModificationSysteme(id, cao);
+        }
+
+        [HttpPut("systeme")]
+        public IEnumerable<Systeme> AjoutSysteme(Systeme nSys)
         {
             Systeme nouveauSysteme = new()
             {
@@ -52,15 +58,15 @@ namespace RAMSerices.Controllers
                 DateAjout = nSys.DateAjout
             };
 
-            referentiel.AjoutSysteme(nouveauSysteme);
+            return referentiel.AjoutSysteme(nouveauSysteme);
 
         }
 
         // Post /Systemes/{id}
-        [HttpPost("id")]
-        public void Delete(int id)
+        [HttpDelete("id")]
+        public IEnumerable<Systeme> Delete(int id)
         {
-            referentiel.SupprimerSysteme(id);
+            return referentiel.SupprimerSysteme(id);
         }
 
     }

@@ -24,22 +24,35 @@ namespace RAMSerices.Referentiels
         }
 
         /// <summary>
+        /// Modificaiton du cao
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="cao"></param>
+        /// <returns></returns>
+        public IEnumerable<Systeme> ModificationSysteme (int id, string cao)
+        {
+            return SysList.Where(s => s.Id == id).Select(s => { s.CAO = cao; return s; }).ToList();
+        }
+
+        /// <summary>
         /// Ajout d'un nouveau système
         /// </summary>
         /// <param name="sys"></param>
         /// <returns></returns>
-        public void AjoutSysteme(Systeme sys)
+        public IEnumerable<Systeme> AjoutSysteme(Systeme sys)
         {
             SysList.Add(sys);
+            return SysList;
         }
         /// <summary>
         /// Supression d'un système
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
-        public void SupprimerSysteme(int id)
+        public IEnumerable<Systeme> SupprimerSysteme(int id)
         {
             SysList.RemoveAll(sys => sys.Id == id);
+            return SysList;
         }
 
 
